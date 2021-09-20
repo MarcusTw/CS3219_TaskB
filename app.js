@@ -32,7 +32,7 @@ else
 app.get('/', (req, res) => {
     res.json({
         status: "success",
-        message: "Welcome to CS3219 Task B done by Marcus. Use /api to use the Random Asian User API:)."
+        message: "Welcome to CS3219 Task B done by Marcus Tan. Use /api to use the Random Asian User API:)."
     })
 })
 app.use('/api', apiRoutes);
