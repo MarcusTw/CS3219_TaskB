@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import UserDetails from './components/UserDetails'
-import './index.css';
-import { PROD_API } from './environment';
-import axios from "axios";
+import UserDetails from './components/UserDetails';
+import UserForm from './components/UserForm';
+import './App.css';
+import { GET_USERS } from './routes';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       usersData: [],
+      createUserPicture: null,
       error: null,
       selectedUser: null
     };
@@ -21,26 +22,22 @@ class App extends Component {
 
   render() {
     const usersList = this.state.usersData.map(user => {
-      return <li key={user.id} onClick={()=>this.handleClick(user.id)}>{user.login}</li>
+      return<li key={user.name} onClick={()=>this.handleClick(user.name)}>{user.name}</li>
     })
     return (
-      <>
+      <div className="App"> 
         <div className="UserList">
-          <h1>Random Asians</h1>
+          <h2>Random Asians</h2>
           <ul>{usersList}</ul>
         </div>
-          <UserDetails user={this.state.selectedUser} />
-      </>
+        <UserDetails user={this.state.selectedUser} />
+        <UserForm />
+      </div>
     );
   }
 
   componentDidMount() {
-    axios
-      .get(PROD_API, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        }
-      })
+    GET_USERS()
       .then(res => {
         this.setState({usersData: res.data.data})
       })
