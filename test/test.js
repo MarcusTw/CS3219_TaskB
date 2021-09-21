@@ -15,7 +15,7 @@ describe('GET', function() {
         .end((error, result) => {
           result.should.have.status(200);
           result.body.status.should.equal("success");
-          result.body.message.should.equal("Welcome to CS3219 Task B, by Marcus Tan");
+          result.body.message.should.equal("Welcome to Random Asian User API. Use /users to see all the random users!");
           done();
       });
   });
@@ -144,7 +144,7 @@ describe('PUT', function() {
 })
 
 describe('DELETE', function() {
-  it('should delete all users with specified name', function(done) {
+  it('should delete a user with specified name', function(done) {
     chai.request(app)
         .delete(`/api/users/${dummyData[0].name}`)
         .end((error, result) => {

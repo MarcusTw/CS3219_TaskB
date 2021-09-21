@@ -28,19 +28,24 @@ exports.new = async function (req, res) {
     user.picture = req.body.picture;
     user.hobbies = req.body.hobbies;
     user.department = req.body.department;
-
-    await user.save(function (err) {
-        // Check for validation error
-        if (err) {
-            failureJson(res, err);
-        } else {
-            res.json({
-                status: "success",
-                message: 'New user created!',
-                data: user
-            });
-        }
-    });
+    if (user.name.match(/\d+/g)) {
+        failureJson(res, "Invalid input name!");
+    } else if (typeof user.age != "number") {
+        failureJson(res, "Invalid input age!");
+    } else {
+        await user.save(function (err) {
+            // Check for validation error
+            if (err) {
+                failureJson(res, err);
+            } else {
+                res.json({
+                    status: "success",
+                    message: 'New user created!',
+                    data: user
+                });
+            }
+        });
+    }
 };
 
 exports.view = function (req, res) {
@@ -87,11 +92,15 @@ exports.delete = function (req, res) {
         if (err) {
             failureJson(res, err);
         } else {
-            res.json({
-                status: "success",
-                message: 'User deleted!',
-                data: user
-            });
+            if (user) {
+                res.json({
+                    status: "success",
+                    message: 'User deleted!',
+                    data: user
+                });
+            } else {
+                failureJson(res, "User not found in Database.")
+            }
         }
     });
 };
