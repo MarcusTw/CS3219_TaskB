@@ -8,10 +8,10 @@ router.get('/', function (req, res) {
 });
 
 
-// Import contact controller
+// Import user controller
 let userController = require('./controller/user_controller');
 
-// Contact routes
+// User routes
 router.route('/users')
     .get(userController.index)
     .post(userController.new);
