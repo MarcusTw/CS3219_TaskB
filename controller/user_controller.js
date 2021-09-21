@@ -23,12 +23,15 @@ exports.index = function (req, res) {
 
 exports.new = async function (req, res) {
     let user = new User();
-    user.name = req.body.name;
-    user.age = req.body.age;
-    user.picture = req.body.picture;
-    user.hobbies = req.body.hobbies;
-    user.department = req.body.department;
-    if (user.name.match(/\d+/g)) {
+    user.name = req.body.name ?? "";
+    user.age = req.body.age ?? null;
+    user.picture = req.body.picture ?? "";
+    user.hobbies = req.body.hobbies ?? "";
+    user.department = req.body.department ?? "";
+
+    if (user.name === "" || user.age === null || user.hobbies === "" || user.department === null) {
+        failureJson(res, "Missing input!");
+    } else if (user.name.match(/\d+/g)) {
         failureJson(res, "Invalid input name!");
     } else if (typeof user.age != "number") {
         failureJson(res, "Invalid input age!");
