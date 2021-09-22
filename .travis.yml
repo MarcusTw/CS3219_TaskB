@@ -3,6 +3,8 @@ node_js:
   - node
 services:
   - mongodb
+notifications:
+  email: false
 deploy:
   provider: heroku
   app: random-asian-api
