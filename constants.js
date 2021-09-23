@@ -1,6 +1,6 @@
 const success = "success";
 
-const apiMsg = "Welcome to CS3219 Task B done by Marcus Tan. Use /api to use the Random Asian User API:)."
+const apiMsg = "This is API Message test CD";
 
 const welcomeMsg = "Welcome! Let us test CD!";
 
