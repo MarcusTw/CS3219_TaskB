@@ -20,6 +20,7 @@ describe('GET', function() {
       });
   });
   it('should show all users', function(done) {
+    this.timeout(5000);
     chai.request(app)
         .get('/api/users')
         .end((error, result) => {
@@ -27,7 +28,7 @@ describe('GET', function() {
           result.body.status.should.equal("success");
           result.body.message.should.equal("Users retrieved successfully!");
           done();
-      });
+        });
   });
   it('should show specified user', function(done) {
     chai.request(app)
