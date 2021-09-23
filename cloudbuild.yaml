@@ -16,13 +16,13 @@ steps:
 # CLOUD RUN DEPLOY
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/cs3219-taskb-326903/placeholder', '.']
+  args: ['build', '-t', 'gcr.io/cs3219-taskb-326903/[IMAGE]', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/cs3219-taskb-326903/placeholder']
+  args: ['push', 'gcr.io/cs3219-taskb-326903/[IMAGE]']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'cs3219-taskb', '--image', 'gcr.io/cs3219-taskb-326903/placeholder', '--region', 'asia-east1']
+  args: ['run', 'deploy', 'cs3219-taskb', '--image', 'gcr.io/cs3219-taskb-326903/[IMAGE]', '--region', 'asia-east1']
 images:
-- gcr.io/cs3219-taskb-326903/placeholder
+- gcr.io/cs3219-taskb-326903/[IMAGE]
