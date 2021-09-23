@@ -5,26 +5,6 @@ services:
 - mongodb
 notifications:
   email: false
-before_install:
-# If the SDK is not already cached, download it and unpack it
-- if [ ! -d ${HOME}/google-cloud-sdk ]; then
-     curl https://sdk.cloud.google.com | bash;
-  fi
-# [START auth]
-# Decrypt the credentials we added to the repo using the key we added with the Travis command line tool
-- DECRYPT_COMMAND
-- tar -xzf credentials.tar.gz
-- mkdir -p lib
-# Here we use the decrypted service account credentials to authenticate the command line tool
-- gcloud auth activate-service-account --key-file client-secret.json
-# [END auth]
-install:
-# Set the correct project to deploy to
-- gcloud config set project cs3219-taskb
-script:
-- gcloud builds submit --pack image=[IMAGE] . 
-- gcloud deploy cs3219taskb --image [IMAGE]
-
 # deploy:
 #   provider: heroku
 #   app: random-asian-user-api
