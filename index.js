@@ -9,3 +9,7 @@ server.listen(PORT, () => {
 });
 
 module.exports = server
+
+const gcloud_api = "https://cs3219taskb-m4jbzqtwiq-de.a.run.app/";
+
+const heroku_api = "https://random-asian-user-api.herokuapp.com/";
