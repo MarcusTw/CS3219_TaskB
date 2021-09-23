@@ -25,7 +25,7 @@ const mongoUrl = process.env.MONGODB_URL ?? 'mongodb://localhost/users';
 
 
 mongoose.connect(mongoUrl, {
-    useUnifiedTopology: true,
+    useUnifiedTopology: false,
     useNewUrlParser: true,
 }).then(console.log("Connecting to MongoDB"));
 
