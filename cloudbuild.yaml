@@ -19,7 +19,7 @@ steps:
   entrypoint: npm
   args: ['install']
 # Run custom commands
-- name: start
+- name: node
   entrypoint: npm
   args: ['start']
 # [END cloudbuild_npm_node]
