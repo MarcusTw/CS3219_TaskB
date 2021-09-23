@@ -5,6 +5,7 @@ let mongoose = require('mongoose');
 let cors = require('cors');
 
 const dotenv = require('dotenv');
+const { apiMsg } = require('./constants');
 dotenv.config();
 
 let app = express();
@@ -36,7 +37,7 @@ else
 app.get('/', (req, res) => {
     res.json({
         status: "success",
-        message: "Welcome to CS3219 Task B done by Marcus Tan. Use /api to use the Random Asian User API:)."
+        message: apiMsg
     })
 })
 app.use('/api', apiRoutes);

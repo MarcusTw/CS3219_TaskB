@@ -3,6 +3,7 @@ const chaiHttp = require('chai-http');
 const assert = chai.assert;
 const app = require('../app');
 const dummyData = require('../data/users');
+const { apiMsg, welcomeMsg } = require('../constants');
 
 // Configure chai. an assertion library for node and browser, can be paired with any JS testing framework (like Mocha)
 chai.use(chaiHttp);
@@ -15,7 +16,7 @@ describe('GET', function() {
         .end((error, result) => {
           result.should.have.status(200);
           result.body.status.should.equal("success");
-          result.body.message.should.equal("Welcome to Random Asian User API. Use /users to see all the random users!");
+          result.body.message.should.equal(welcomeMsg);
           done();
       });
   });

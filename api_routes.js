@@ -3,12 +3,13 @@ let router = require('express').Router();
 router.get('/', function (req, res) {
     res.json({
         status: 'success',
-        message: "Test Cloud Run CD"
+        message: welcomeMsg
         //message: 'Welcome to Random Asian User API. Use /users to see all the random users!',
     });
 });
 
 
+const { welcomeMsg } = require('./constants');
 // Import user controller
 let userController = require('./controller/user_controller');
 
