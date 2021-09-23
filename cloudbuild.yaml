@@ -12,3 +12,4 @@ steps:
 #   entrypoint: npm
 #   args: ['build']
 # [END cloudbuild_npm_node]
+- name: gcloud
