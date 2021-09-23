@@ -26,7 +26,6 @@ describe('GET', function() {
           result.should.have.status(200);
           result.body.status.should.equal("success");
           result.body.message.should.equal("Users retrieved successfully!");
-          assert(result.body.data);
           done();
       });
   });
