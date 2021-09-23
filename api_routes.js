@@ -3,7 +3,8 @@ let router = require('express').Router();
 router.get('/', function (req, res) {
     res.json({
         status: 'success',
-        message: 'Welcome to Random Asian User API. Use /users to see all the random users!',
+        message: "Test Cloud Run CD"
+        //message: 'Welcome to Random Asian User API. Use /users to see all the random users!',
     });
 });
 
