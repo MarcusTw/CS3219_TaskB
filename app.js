@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-const mongoUrl = "mongodb+srv://marcustw:3001@cluster0.7xshs.mongodb.net/taskb?retryWrites=true&w=majority" ?? 'mongodb://localhost/users';
+const mongoUrl = process.env.MONGODB_URL ?? 'mongodb://localhost/users';
 
 
 mongoose.connect(mongoUrl, {
