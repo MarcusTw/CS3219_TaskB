@@ -70,22 +70,37 @@ exports.update = function (req, res) {
         if (err) {
             failureJson(res, err);
         } else {
-            user.age = req.body.age ?? user.age;
-            user.picture = req.body.picture ?? user.picture;
-            user.hobbies = req.body.hobbies ?? user.hobbies;
-            user.department = req.body.department ?? user.department;
-
-            user.save(function (err) {
-                if (err) {
-                    res.json(err);
+            if (user) {
+                const prevAge = user.age;
+                const prevPicture = user.picture;
+                const prevHobbies = user.hobbies;
+                const prevDepartment = user.department;
+                user.age = req.body.age ?? user.age;
+                user.picture = req.body.picture ?? user.picture;
+                user.hobbies = req.body.hobbies ?? user.hobbies;
+                user.department = req.body.department ?? user.department;
+                if (req.body.age !== undefined && typeof req.body.age != "number") {
+                    failureJson(res, "Invalid input age!");
+                } else if (prevAge === user.age && user.picture === prevPicture
+                    && prevHobbies === user.hobbies && prevDepartment === user.department) {
+                    failureJson(res, "There is no modification of details, please enter the modified details.");
                 } else {
-                    res.json({
-                        status: "success",
-                        message: 'User info updated!',
-                        data: user
+                    user.save(function (err) {
+                        if (err) {
+                            res.json(err);
+                        } else {
+                            res.json({
+                                status: "success",
+                                message: 'User info updated!',
+                                data: user
+                            });
+                        }
                     });
                 }
-            });
+            } else {
+                failureJson(res, "User not found in Database.");
+            }
+            
         }
     });
 };
